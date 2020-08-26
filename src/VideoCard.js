@@ -3,7 +3,7 @@ import './VideoCard.css';
 import VideoHeader from './VideoHeader';
 import VideoFooter from './VideoFooter';
 
-function VideoCard() {
+function VideoCard({ url, likes, shares, channel, avatarSrc, song}) {
     const [isVideoPlaying, setIsVideoPlaying] = 
     useState(false);
     const videoRef = useRef(null);
@@ -28,11 +28,17 @@ function VideoCard() {
             ref={videoRef}
             onClick={onVideoPress}
             className="videoCard__player"
-            src="https://d14pr3cu5atb0x.cloudfront.net/cms/Instagram-video-editor-for-making-a-video-for-instagram-cc83b2b5fe.mp4"
+            src={url}
             alt="IG reel video"
             loop={true}
             />
-            <VideoFooter/>
+            <VideoFooter 
+            channel={channel}
+            likes={likes}
+            shares={shares}
+            avatarSrc={avatarSrc}
+            song={song}
+            />
         </div>
     )
 }
