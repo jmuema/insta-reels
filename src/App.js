@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 // import VideoCard from './VideoCard';
 import VideoCard from './VideoCard';
+import db from "./firebase";
+
 function App() {
+  const [ reels, setReels ] = useState ([]);
+  useEffect (() => {
+    // App Component will run ONCE when it loads
+    db.collection('reels').onSnapshot(snapshot => (
+    setReels(snapshot.docs.map(doc => doc.data()))
+    ))
+  }, [])
   return (
     //BEM naming convention
 
@@ -25,37 +34,18 @@ function App() {
       <div className="app__videos">
         {/* Container od app__videos */}
         {/* video */}
-        <VideoCard
-          channel='Muema'
-          avatarSrc='https://lh3.googleusercontent.com/proxy/fqMVnXdWefo24WMiKOb7d5puy_4pQGzdcmX69i4VJS2bA4KeUcxdOJ6yt1HWd2he7Cd7ZBcsmSnivSSDBsVGV9ejQ8hAu1W_ZhQ80ULemrMCGYEnldLjrw'
-          song='Test Song By - muema'
-          url='https://d14pr3cu5atb0x.cloudfront.net/cms/Instagram-video-editor-for-making-a-video-for-instagram-cc83b2b5fe.mp4'
-          likes={950}
-          shares={30}
-        />
-        <VideoCard
-          channel='Muema'
-          avatarSrc='https://lh3.googleusercontent.com/proxy/fqMVnXdWefo24WMiKOb7d5puy_4pQGzdcmX69i4VJS2bA4KeUcxdOJ6yt1HWd2he7Cd7ZBcsmSnivSSDBsVGV9ejQ8hAu1W_ZhQ80ULemrMCGYEnldLjrw'
-          song='Test Song By - muema'
-          url='https://d14pr3cu5atb0x.cloudfront.net/cms/Instagram-video-editor-for-making-a-video-for-instagram-cc83b2b5fe.mp4'
-          likes={950}
-          shares={30}
-        />
-        <VideoCard
-          channel='Muema'
-          avatarSrc='https://lh3.googleusercontent.com/proxy/fqMVnXdWefo24WMiKOb7d5puy_4pQGzdcmX69i4VJS2bA4KeUcxdOJ6yt1HWd2he7Cd7ZBcsmSnivSSDBsVGV9ejQ8hAu1W_ZhQ80ULemrMCGYEnldLjrw'
-          song='Test Song By - muema'
-          url='https://d14pr3cu5atb0x.cloudfront.net/cms/Instagram-video-editor-for-making-a-video-for-instagram-cc83b2b5fe.mp4'
-          likes={950}
-          shares={30}
-        />          <VideoCard
-          channel='Muema'
-          avatarSrc='https://lh3.googleusercontent.com/proxy/fqMVnXdWefo24WMiKOb7d5puy_4pQGzdcmX69i4VJS2bA4KeUcxdOJ6yt1HWd2he7Cd7ZBcsmSnivSSDBsVGV9ejQ8hAu1W_ZhQ80ULemrMCGYEnldLjrw'
-          song='Test Song By - muema'
-          url='https://d14pr3cu5atb0x.cloudfront.net/cms/Instagram-video-editor-for-making-a-video-for-instagram-cc83b2b5fe.mp4'
-          likes={950}
-          shares={30}
-        />
+        {reels.map(({channel, avatarSrc, song, url, likes, shares, reel}) => (
+            <VideoCard
+            channel={channel}
+            avatarSrc={avatarSrc}
+            song={song}
+            url={url}
+            likes={likes}
+            shares={shares}
+          />
+        ))}
+      
+        
       </div>
 
     </div>
