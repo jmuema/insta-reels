@@ -1,6 +1,7 @@
 import React, { useState,useRef } from 'react';
 import './VideoCard.css';
 import VideoHeader from './VideoHeader';
+import VideoFooter from './VideoFooter';
 
 function VideoCard() {
     const [isVideoPlaying, setIsVideoPlaying] = 

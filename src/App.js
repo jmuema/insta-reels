@@ -1,24 +1,35 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-
+// import VideoCard from './VideoCard';
+import VideoCard from './VideoCard';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    //BEM naming convention
+
+
+    <div className="app">
+
+      <div className="app__top">
+        <img className="app__logo"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/768px-Instagram_logo_2016.svg.png"
+        alt=""
+        /> 
+              <h1>Reels</h1>
+
+        
+        {/* image at top - logo */}
+        {/* Reels text */}
+      </div>
+
+
+      <div className="app__videos">
+        {/* Container od app__videos */}
+        {/* video */}
+        <VideoCard/>
+        <VideoCard/>
+        <VideoCard/>
+      </div>
+
     </div>
   );
 }
